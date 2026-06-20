@@ -1,5 +1,5 @@
 locals {
-  env_name                      = var.tags["Environment"]
+  env_name                      = var.environment
   db_subnet_group_name          = "${local.env_name}-db"
   redshift_subnet_group_name    = "${local.env_name}-redshift"
   elasticache_subnet_group_name = "${local.env_name}-elasticache"
