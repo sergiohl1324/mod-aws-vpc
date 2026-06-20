@@ -465,19 +465,19 @@ variable "default_vpc_tags" {
 }
 
 variable "vpc_endpoint_type" {
-  description = "VPC Endpoint Type (solo aplica si enable_ssm_endpoint o enable_ec2_endpoint = true)"
+  description = "VPC Endpoint Type (only applies if enable_ssm_endpoint or enable_ec2_endpoint = true)"
   type        = string
   default     = "Interface"
 }
 
 variable "project" {
-  description = "Nombre del proyecto que consume este módulo (usado para tagging)"
+  description = "Name of the project consuming this module (used for tagging)"
   type        = string
   default     = "poc"
 }
 
 variable "environment" {
-  description = "Ambiente lógico (ej. nonproduction, production) usado para tagging"
+  description = "Logical environment (e.g. nonproduction, production) used for tagging"
   type        = string
   default     = "nonproduction"
 }
