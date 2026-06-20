@@ -470,8 +470,9 @@ variable "default_vpc_tags" {
 }
 
 variable "vpc_endpoint_type" {
-  description = "VPC Endpoint Type"
-  type = string
+  description = "VPC Endpoint Type (solo aplica si enable_ssm_endpoint o enable_ec2_endpoint = true)"
+  type        = string
+  default     = "Interface"
 }
 
 variable "project" {
