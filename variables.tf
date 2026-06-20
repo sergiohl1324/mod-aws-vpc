@@ -10,6 +10,7 @@ variable "name" {
 
 variable "cidr" {
   description = "The CIDR block for the VPC. Default value is a valid CIDR, but not acceptable by AWS and should be overridden"
+  type        = string
   default     = "0.0.0.0/0"
 }
 
@@ -60,11 +61,13 @@ variable "elasticache_subnet_suffix" {
 
 variable "public_subnets" {
   description = "A list of public subnets inside the VPC"
+  type        = list(string)
   default     = []
 }
 
 variable "private_subnets" {
   description = "A list of private subnets inside the VPC"
+  type        = list(string)
   default     = []
 }
 
@@ -156,6 +159,7 @@ variable "create_eks_nat_gateway_route" {
 
 variable "azs" {
   description = "A list of availability zones in the region"
+  type        = list(string)
   default     = []
 }
 
@@ -171,11 +175,13 @@ variable "enable_dns_support" {
 
 variable "enable_nat_gateway" {
   description = "Should be true if you want to provision NAT Gateways for each of your private networks"
+  type        = bool
   default     = false
 }
 
 variable "single_nat_gateway" {
   description = "Should be true if you want to provision a single shared NAT Gateway across all of your private networks"
+  type        = bool
   default     = true
 }
 
@@ -468,3 +474,14 @@ variable "vpc_endpoint_type" {
   type = string
 }
 
+variable "project" {
+  description = "Nombre del proyecto que consume este módulo (usado para tagging)"
+  type        = string
+  default     = "poc"
+}
+
+variable "environment" {
+  description = "Ambiente lógico (ej. nonproduction, production) usado para tagging"
+  type        = string
+  default     = "nonproduction"
+}
