@@ -150,27 +150,27 @@ output "private_route_table_ids" {
 
 output "database_route_table_ids" {
   description = "List of IDs of database route tables"
-  value       = coalescelist(aws_route_table.database.*.id, aws_route_table.private.*.id)
+  value       = length(aws_route_table.database) > 0 ? aws_route_table.database.*.id : aws_route_table.private.*.id
 }
 
 output "redshift_route_table_ids" {
   description = "List of IDs of redshift route tables"
-  value       = coalescelist(aws_route_table.redshift.*.id, aws_route_table.private.*.id)
+  value       = length(aws_route_table.redshift) > 0 ? aws_route_table.redshift.*.id : aws_route_table.private.*.id
 }
 
 output "elasticache_route_table_ids" {
   description = "List of IDs of elasticache route tables"
-  value       = coalescelist(aws_route_table.elasticache.*.id, aws_route_table.private.*.id)
+  value       = length(aws_route_table.elasticache) > 0 ? aws_route_table.elasticache.*.id : aws_route_table.private.*.id
 }
 
 output "eks_route_table_ids" {
   description = "List of IDs of EKS route tables"
-  value       = coalescelist(aws_route_table.eks.*.id, aws_route_table.private.*.id)
+  value       = length(aws_route_table.eks) > 0 ? aws_route_table.eks.*.id : aws_route_table.private.*.id
 }
 
 output "eks_route_table_secondary_ids" {
   description = "List of IDs of EKS route tables secondary"
-  value       = coalescelist(aws_route_table.secondary_eks.*.id, aws_route_table.private.*.id)
+  value       = length(aws_route_table.secondary_eks) > 0 ? aws_route_table.secondary_eks.*.id : aws_route_table.private.*.id
 }
 
 output "intra_route_table_ids" {
