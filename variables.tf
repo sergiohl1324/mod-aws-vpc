@@ -459,11 +459,6 @@ variable "default_vpc_enable_dns_hostnames" {
   default     = false
 }
 
-variable "default_vpc_enable_classiclink" {
-  description = "Should be true to enable ClassicLink in the Default VPC"
-  default     = false
-}
-
 variable "default_vpc_tags" {
   description = "Additional tags for the Default VPC"
   default     = {}
