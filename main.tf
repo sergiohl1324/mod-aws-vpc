@@ -355,7 +355,7 @@ locals {
 resource "aws_eip" "nat" {
   count = var.create_vpc && (var.enable_nat_gateway && !var.reuse_nat_ips) ? local.nat_gateway_count : 0
 
-  vpc = true
+  domain = "vpc"
 
   tags = merge(tomap({ Name = format("%s-nat-gw-%s", local.env_name, replace(element(var.azs, count.index), "/.*(.)/", "$1")) }), var.tags, var.nat_eip_tags)
 }
@@ -604,7 +604,6 @@ resource "aws_default_vpc" "this" {
 
   enable_dns_support   = var.default_vpc_enable_dns_support
   enable_dns_hostnames = var.default_vpc_enable_dns_hostnames
-  enable_classiclink   = var.default_vpc_enable_classiclink
 
   tags = merge(tomap({ Name = format("%s", var.default_vpc_name) }), var.tags, var.default_vpc_tags)
 }
