@@ -6,6 +6,19 @@ Versioning follows [SemVer](https://semver.org/).
 
 ---
 
+## [v0.1.1] — 2026-07-18
+
+### Fixed
+- `aws_db_subnet_group.database`, `aws_redshift_subnet_group.redshift` y
+  `aws_elasticache_subnet_group.elasticache` envolvían el splat `aws_subnet.*.*.id` (ya una
+  lista) en un `[...]` extra, produciendo una lista de un solo elemento que a su vez era una
+  tupla — `subnet_ids` requiere `list(string)`, no `list(list(string))`. Terraform fallaba con
+  `Inappropriate value for attribute "subnet_ids": element 0: string required, but have tuple`
+  en cualquier consumidor que activara `create_database_subnet_group` (o el equivalente de
+  redshift/elasticache) con al menos un subnet declarado — es decir, esta funcionalidad nunca
+  había funcionado para ningún consumidor hasta ahora. Encontrado al usar `database_subnets`
+  por primera vez desde `k8s-learning` (RDS del backend demo).
+
 ## [v0.1.0] — 2026-06-19
 
 ### Added

@@ -251,7 +251,7 @@ resource "aws_db_subnet_group" "database" {
 
   name        = local.db_subnet_group_name
   description = "Database subnet group for ${local.env_name}"
-  subnet_ids  = [aws_subnet.database.*.id]
+  subnet_ids  = aws_subnet.database.*.id
 
   tags = merge(tomap({ Name = format("%s", local.db_subnet_group_name) }), var.tags, var.database_subnet_group_tags)
 }
@@ -274,7 +274,7 @@ resource "aws_redshift_subnet_group" "redshift" {
 
   name        = local.redshift_subnet_group_name
   description = "Redshift subnet group for ${local.env_name}"
-  subnet_ids  = [aws_subnet.redshift.*.id]
+  subnet_ids  = aws_subnet.redshift.*.id
 
   tags = merge(tomap({ Name = format("%s", local.redshift_subnet_group_name) }), var.tags, var.redshift_subnet_group_tags)
 }
@@ -297,7 +297,7 @@ resource "aws_elasticache_subnet_group" "elasticache" {
 
   name        = local.elasticache_subnet_group_name
   description = "ElastiCache subnet group for ${local.env_name}"
-  subnet_ids  = [aws_subnet.elasticache.*.id]
+  subnet_ids  = aws_subnet.elasticache.*.id
 }
 
 #####################################################
